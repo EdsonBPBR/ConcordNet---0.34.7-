@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConcordNet</title>
+    <link rel="icon" type="image/x-icon" href="../imagens/nova_logo_guia.png">
+    <link rel="stylesheet" type="text/css" href="../style/style_index.css">
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+    
+
+
+
+
+    
+    
+    <script>
+        function elementoEstaVisivel(elemento, offset) {
+        var rect = elemento.getBoundingClientRect();
+        return (
+            rect.top >= -offset &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + offset
+        );
+    }
+
+    function lidarComRolar() {
+        var retangulo = document.querySelector('.retangulo05');
+        var colunas = document.querySelectorAll('.coluna01_tabela02');
+
+
+        if (elementoEstaVisivel(retangulo, 220) && !retangulo.classList.contains('show')) {
+            retangulo.classList.add('show');
+        }
+
+   
+        colunas.forEach(function (coluna, index) {
+            if (elementoEstaVisivel(coluna, 220) && !coluna.classList.contains('aparecer')) {
+                setTimeout(function () {
+                    coluna.classList.add('aparecer');
+                }, index * 220);
+            } else if (!elementoEstaVisivel(coluna, 220) && coluna.classList.contains('aparecer')) {
+                coluna.classList.remove('aparecer');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', lidarComRolar);
+
+    lidarComRolar();
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        var retangulo = document.querySelector(".retangulo05");
+
+        function handleScroll() {
+            var rect = retangulo.getBoundingClientRect();
+            var isVisible = (rect.top >= -rect.height / 2) && (rect.bottom <= window.innerHeight + rect.height / 2);
+
+            if (isVisible) {
+                retangulo.classList.add("show");
+            } else {
+                retangulo.classList.remove("show");
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll);
+
+
+        handleScroll();
+    });
+    </script>
+    
+    
+    <script>
+        function formatarCEP(input) {
+
+            let valor = input.value.replace(/\D/g, '');
+
+
+            if (valor.length > 5) {
+                valor = valor.substring(0, 5) + '-' + valor.substring(5);
+            }
+
+            input.value = valor;
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const secaoAnimada = document.getElementById('secaoAnimada');
+
+    function handleScroll() {
+        const secaoTop = secaoAnimada.getBoundingClientRect().top;
+        const secaoBottom = secaoAnimada.getBoundingClientRect().bottom;
+
+        if (secaoTop < window.innerHeight / 2 && secaoBottom > 0) {
+            secaoAnimada.classList.add('animar');
+        } else {
+            secaoAnimada.classList.remove('animar');
+        }
+    }
+    document.addEventListener('scroll', handleScroll);
+    handleScroll();
+});
+    </script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+            var retangulo = document.getElementById('retangulo08');
+
+            function verificarAnimacao() {
+                var boundingRect = retangulo.getBoundingClientRect();
+
+                if (boundingRect.top < window.innerHeight && boundingRect.bottom >= 0) {
+                    retangulo.classList.add('ativo');
+                } else {
+                    retangulo.classList.remove('ativo');
+                }
+            }
+
+            window.addEventListener('scroll', verificarAnimacao);
+            
+
+            verificarAnimacao();
+        });
+    </script>
+
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+    const carouselItems = document.querySelectorAll(".coluna_campo_retangulo15");
+    const itemsPerSlide = 3;
+    let currentIndex = Math.floor(Math.random() * Math.ceil(carouselItems.length / itemsPerSlide));
+
+    function showItems(index) {
+      const startIndex = index * itemsPerSlide;
+      const endIndex = startIndex + itemsPerSlide;
+
+      carouselItems.forEach((item, i) => {
+        item.style.display = (i >= startIndex && i < endIndex) ? "inline-block" : "none";
+      });
+    }
+
+    function nextItems() {
+      currentIndex = (currentIndex + 1) % Math.ceil(carouselItems.length / itemsPerSlide);
+      showItems(currentIndex);
+    }
+
+    function startCarousel() {
+      showItems(currentIndex);
+      setInterval(nextItems, 5000);
+    }
+
+    startCarousel();
+  });
+    </script>
+
+
+
+
+    <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    var elementos = document.querySelectorAll('.retangulo04');
+    var ativado = false;
+
+    function handleScroll() {
+        var distanciaDoTopo = window.scrollY;
+
+        if (distanciaDoTopo >= 550 && !ativado) {
+            ativarAnimacao();
+        }
+
+        if (distanciaDoTopo < 600 && ativado) {
+            desativarAnimacao();
+        }
+    }
+
+    function ativarAnimacao() {
+        elementos.forEach(function (elemento, index) {
+            var rect = elemento.getBoundingClientRect();
+            var direcao = index % 2 === 0 ? 'left' : 'right';
+
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                anime({
+                    targets: elemento,
+                    translateX: direcao === 'left' ? [-50, 0] : [50, 0],
+                    opacity: [0, 1],
+                    duration: 290,
+                    easing: 'easeInOutQuad',
+                    delay: 150 * index,
+                    autoplay: true
+                });
+            }
+        });
+
+        ativado = true;
+    }
+    function desativarAnimacao() {
+        ativado = false;
+    }
+
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+});
+
+    </script>
+
+    <script>
+      function togglePesquisa() {
+        var campoPesquisa = document.getElementById('campoPesquisa');
+        campoPesquisa.classList.toggle('active');
+    }
+
+    function pesquisar(event) {
+        if (event.key === "Enter") {
+            var pesquisa = document.getElementById('campoPesquisa').querySelector('input').value.toLowerCase();
+            var elementos = document.querySelectorAll('.elemento_pesquisavel');
+
+            for (var i = 0; i < elementos.length; i++) {
+                var textoElemento = elementos[i].textContent.toLowerCase();
+
+                if (textoElemento.includes(pesquisa)) {
+                    elementos[i].scrollIntoView({ behavior: "smooth" });
+                    campoPesquisa.classList.remove('active');  
+                    break;
+                }
+            }
+        }
+    }
+    </script>
+
+    <script>
+        window.addEventListener("scroll", function(){
+        let header = document.querySelector('#header');
+        let divisao1Ocultar = document.querySelector('#divisao1_ocultar');
+
+        header.classList.toggle('rolagem', window.scrollY > 0);
+
+        if (window.scrollY > 0) {
+            divisao1Ocultar.style.height = '0';
+            divisao1Ocultar.style.padding = '0';
+        } else {
+            divisao1Ocultar.style.height = '';
+            divisao1Ocultar.style.padding = '';
+        }
+    });
+    </script>
+
+ 
+
+   
+
+
+</head>
+<body>
+    <section class="divisao1" id="divisao1_ocultar">
+        <div class="divisao1_01 elemento_pesquisavel">
+            <div class="retangulo01 ">
+                <a href="https://api.whatsapp.com/send/?phone=5582993821363&text=Olá ConcordNet!" target="_blank" class="link01">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="campo_imagem01">
+                                    <img src="../imagens/imagem_whatsapp.png" alt="" class="imagem01">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="conteudo_retangulo01">
+                                    <p class="frase_conteudo_retangulo01">Fale conosco pelo WhatsApp</p>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                    </table>
+                </a>
+            </div>
+    
+            <div class="campo_imagem02 elemento_pesquisavel">
+                <a href="#facebook">
+                    <div class="campo_imagem02">
+                        <img src="../imagens/imagem_facebook.png" alt="" class="imagem02">
+                    </div>
+                    
+                </a>
+            </div>
+    
+            <div class="campo_imagem03 elemento_pesquisavel">
+                <a href="https://www.instagram.com/edsuuubp.exe/" target="_blank">
+                    <div class="campo_imagem03">
+                        <img src="../imagens/imagem_instagram.png" alt="" class="imagem03">
+                    </div>
+                </a>
+            </div>
+    
+            <div class="elementos_esquerda">
+                <div class="campo_imagem04">
+                    <img src="../imagens/imagem_supa.png" alt="" class="icone_lupa" onclick="togglePesquisa()">
+                </div>
+
+                <div class="campo_pesquisa" id="campoPesquisa">
+                    <input type="text" placeholder="Pesquisar" onkeydown="pesquisar(event)">
+                </div>
+    
+                <div class="campo_imagem04 elemento_pesquisavel">
+                    <img src="../imagens/cadeado_superior.png" alt="" class="imagem04">
+                </div>
+    
+                <div class="campo_link02_1 elemento_pesquisavel">
+                    <a href="" class="link02"><button class="link02_botao">Cadastre-se</button></a>
+                </div>
+    
+                <div class="campo_link02">
+                    <p class="palavra_solta01">|</p>
+                </div>
+    
+                <div class="campo_link02 elemento_pesquisavel">
+                    <p class="palavra_solta01">Sou cliente</p>
+                </div>
+    
+                <div class="campo_link03 elemento_pesquisavel">
+                    <a href="" class="link03">entrar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <section class="divisao2">
+        <section class="divisao2_012">
+            <header class="divisao2_01" id="header">
+                <div class="divisao2_02">
+                    <div class="campo_imagem_principal">
+                        <a href="index.html" title = "Logo ConcordNet">
+                            <img src="../imagens/nova_logo_principal.png" alt="" class="logo_principal" >
+                        </a>
+                    </div>
+                    <div class="divisao2_02_campo_links">
+                        <a href="#" class="links_divisao2 main-link" data-target="planos">Planos</a>
+                    </div>
+                    <div class="divisao2_02_campo_links">
+                        <a href="#" class="links_divisao2 main-link" data-target="servicos">Serviços</a>
+                    </div>
+                    <div class="divisao2_02_campo_links">
+                        <a href="#" class="links_divisao2 main-link" data-target="atendimento">Atendimento</a>
+                    </div>
+                    <div class="divisao2_02_campo_links">
+                        <a href="#"  class="links_divisao2 main-link" >Instituição</a>
+                    </div>
+                    <div class="divisao2_02_campo_links">
+                        <a href="https://www.speedtest.net/pt" class="links_divisao2 main-link" data-target="teste_velocidade" data-target="instituicao" target="_blank">Teste de velocidade</a>
+                    </div>
+                    <div>
+                        <p class="palavra_solta02">|</p>
+                    </div>
+                    <div class="divisao2_02_campo_links">
+                        <a href="#" class="links_divisao2 main-link" data-target="area_cliente">Área do cliente</a>
+                    </div>
+                </div>
+            </header>
+        </section>
+        
+      
+
+
+        <div class="divisao2_03">
+            <table>
+                <tr>
+                    <td>
+                        <div class="campo_imagem_plano_inicial">
+                            <img src="../imagens/precos_concordnet_painel_principal.png" alt="" class="imagem_plano_inicial">
+                            <button class="botao_acesso_plano">Assine agora!</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="campo_imagem_teste_velocidade">
+                            <img src="../imagens/teste_velocidade_internet.png" alt="" class="imagem_plano_teste">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </section>
+    
+
+
+
+
+    <section class="divisao3">
+        <div class="divisao3_01">
+            <div class="tabela-container">
+                <div class="campo_nossas_vantagens">
+                    <h1 class="nossas_vantagens">NOSSAS <br> VANTAGENS</h1>
+                </div>
+                <table class="tabela22">
+                    <tr>
+                        <td class="campo_colunas01">
+                            <div class="retangulo04"  id="animacao1">
+                                <div class="campo_imagens_icones01">
+                                    <img src="../imagens/imagem_relogio.png" alt="" class="icones_tabela_container01">
+                                </div>
+                                <div>
+                                    <p class="palavra_painel_vantagens">Instalação <br> imediata</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="campo_colunas01">
+                            <div class="retangulo04" id="animacao2">
+                                <div class="campo_imagens_icones01">
+                                    <img src="../imagens/imagem_foguete.png" alt="" class="icones_tabela_container01">
+                                </div>
+                                <div>
+                                    <p class="palavra_painel_vantagens">Custo <br> benefício</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="campo_colunas01">
+                            <div class="retangulo04" id="animacao3">
+                                <div class="campo_imagens_icones01">
+                                    <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="icones_tabela_container01">
+                                </div>
+                                <div>
+                                    <p class="palavra_painel_vantagens">Fibra Óptica<br> WiFi - 5G</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="retangulo04">
+                                <div class="campo_imagens_icones01">
+                                    <img src="../imagens/imagem_fone.png" alt="" class="icones_tabela_container01">
+                                </div>
+                                <div>
+                                    <p class="palavra_painel_vantagens">Atendimento <br> especializado</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="retangulo04">
+                                <div class="campo_imagens_icones01">
+                                    <img src="../imagens/imagem_controle.png" alt="" class="icones_tabela_container01">
+                                </div>
+                                <div>
+                                    <p class="palavra_painel_vantagens">Internet para Games <br>e Desenvolvedores</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="retangulo04">
+                                <div class="campo_imagens_icones01">
+                                    <img src="../imagens/imagem_servidor.png" alt="" class="icones_tabela_container01">
+                                </div>
+                                <div>
+                                    <p class="palavra_painel_vantagens">Serviços de rede <br> e Hospedagem</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="divisao3_02">
+            <div class="retangulo05">
+                <table>
+                    <tr>
+                        <div class="linha01_tabela01">
+                            <td class="coluna01_tabela01">
+                                <div>
+                                     <img src="../imagens/imagem_tecnologia.png" alt="" class="imagens_retangulo05">
+                                </div>
+                             </td>
+                             <td class="coluna01_tabela01">
+                                 <div>
+                                     <img src="../imagens/imagem_firewall.png" alt="" class="imagens_retangulo05">
+                                 </div>
+                             </td>
+                             <td class="coluna01_tabela01">
+                                 <div>
+                                     <img src="../imagens/imagem_cabo_fibra.png" alt="" class="imagens_retangulo05">
+                                 </div>
+                             </td>
+                             <td class="coluna01_tabela01">
+                                 <div>
+                                     <img src="../imagens/imagem_confidencialidade.png" alt="" class="imagens_retangulo05">
+                                 </div>
+                             </td>
+                             <td class="coluna01_tabela01">
+                                 <div>
+                                     <img src="../imagens/imagem_dns.png" alt="" class="imagens_retangulo05">
+                                 </div>
+                             </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                            <td class="coluna02_tabela01">
+                               <h4 class="titulos_caracteristicas">Uso de tecnologias</h4>
+                            </td>
+                            <td class="coluna02_tabela01">
+                                <h4 class="titulos_caracteristicas">Proteção de dados</h4>
+                             </td>
+                             <td class="coluna02_tabela01">
+                                <h4 class="titulos_caracteristicas">Fibra Óptica</h4>
+                             </td>
+                             <td class="coluna02_tabela01">
+                                <h4 class="titulos_caracteristicas">Confidencialidade</h4>
+                             </td >
+                             <td class="coluna02_tabela01">
+                                <h4 class="titulos_caracteristicas">DNS Cache Only</h4>
+                             </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                            <td class="coluna03_tabela01">
+                               <h4 class="palavra_solta20 elemento_pesquisavel">Uso de equipamentos de </h4>
+                            </td>
+                            <td class="coluna03_tabela01">
+                                <h4 class="palavra_solta20 elemento_pesquisavel">Uso de Firewalls de</h4>
+                             </td>
+                             <td class="coluna03_tabela01">
+                                <h4 class="palavra_solta20 elemento_pesquisavel">Ênfase principal na</h4>
+                             </td>
+                             <td class="coluna03_tabela01">
+                                <h4 class="palavra_solta20 elemento_pesquisavel">Confidencialidade</h4>
+                             </td >
+                             <td class="coluna03_tabela01">
+                                <h4 class="palavra_solta20 elemento_pesquisavel">DNS dedicado para</h4>
+                             </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                            <td class="coluna04_tabela01">
+                               <h4 class="palavra_solta20">tecnologias no mercado</h4>
+                            </td>
+                            <td class="palavra_solta20 coluna04_tabela01">
+                                <h4 class="palavra_solta20">aplicação e pacotes</h4>
+                             </td>
+                             <td class="palavra_solta20 coluna04_tabela01">
+                                <h4 class="palavra_solta20">utilização da fibra</h4>
+                             </td>
+                             <td class="palavra_solta20 coluna04_tabela01">
+                                <h4 class="palavra_solta20">dos dados trafegados</h4>
+                             </td >
+                             <td class="palavra_solta20 coluna04_tabela01">
+                                <h4 class="palavra_solta20">consultas</h4>
+                             </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <section class="divisao4">
+        <div class="divisao4_02">
+            <table class="tabela02">
+                <tr class="linha01_tabela02">
+                    <td class="coluna01_tabela02">
+                        <div class="caracteristicas_planos01">
+                            <div class="retangulo06">
+                                <h4 class="megas_retangulos06 elemento_pesquisavel">75 MEGA</h4>
+                                <h5 class="enlace_retangulos06 elemento_pesquisavel">FIBRA ÓPTICA</h5>
+                            </div>
+
+                            <div class="retangulo07">
+                                <div class="parte-superior"  class="elemento-container">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p class="palavra_solta08">R$</p>
+                                            </td>
+                                            <td>
+                                                <h3 class="preco_plano_1">54</h3>
+                                            </td>
+                                            <td>
+                                                <p class="palavra_solta09">,90</p>
+                                            </td>
+                                            <td>
+                                                <p class="palavra_solta10">/mês</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="parte-inferior">
+                                    <table>
+                                        <tr class="linhas_tabela03">
+                                            <td class="coluna_icones">
+                                                <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="imagem_parte_inferior_wifi">
+                                            </td>
+                                            <td>
+                                                <div class="coluna_nomes">
+                                                    <p class="palavra_solta11 elemento_pesquisavel" >WiFi - 5G</p>
+                                                    <hr class="linha_horizontal02">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="linhas_tabela03">
+                                            <td class="coluna_icones">
+                                                <img src="../imagens/imagem_nuvem.png" alt="" class="imagem_parte_inferior_wifi">
+                                            </td>
+                                            <td class="coluna_nomes">
+                                                <div>
+                                                    <p class="palavra_solta11 elemento_pesquisavel">70 Mbps de Download</p>
+                                                    <hr class="linha_horizontal02">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="linhas_tabela03">
+                                            <td class="coluna_icones">
+                                                <img src="../imagens/imagem_nuvem_upload.png" alt="" class="imagem_parte_inferior_wifi">
+                                            </td>
+                                            <td class="coluna_nomes">
+                                                <div>
+                                                    <p class="palavra_solta11 elemento_pesquisavel">40 Mbps de Upload</p>
+                                                    <hr class="linha_horizontal02">
+                                                </div>     
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="campo_botao03">
+                                        <button class="botao03 elemento_pesquisavel">Adquirir plano</button>
+                                    </div>
+                                    <div class="campo_link04">
+                                        <a href="#mais detalhes" class="link_planos_divisao4_03 elemento_pesquisavel">
+                                            Mais detalhes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="coluna01_tabela02">
+                        <div class="caracteristicas_planos02">
+                            <div class="retangulo06">
+                                <h4 class="megas_retangulos06 elemento_pesquisavel">100 MEGA</h4>
+                                <h5 class="enlace_retangulos06 elemento_pesquisavel">FIBRA ÓPTICA</h5>
+                            </div>
+
+                            <div class="retangulo07">
+                                <div class="retangulo07">
+                                    <div class="parte-superior"  class="elemento-container">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="palavra_solta08">R$</p>
+                                                </td>
+                                                <td>
+                                                    <h3 class="preco_plano_1">74</h3>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta09">,90</p>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta10">/mês</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="parte-inferior">
+                                        <table>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td>
+                                                    <div class="coluna_nomes">
+                                                        <p class="palavra_solta11">WiFi - 5G + 20 Canais</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11">100 Mbps de Download</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem_upload.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11">100 Mbps de Upload</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="campo_botao03">
+                                            <button class="botao03">Adquirir plano</button>
+                                        </div>
+                                        <div class="campo_link04">
+                                            <a href="#mais detalhes" class="link_planos_divisao4_03">
+                                                Mais detalhes
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td class="coluna01_tabela02">
+                        <div class="caracteristicas_planos03">
+                            <div class="retangulo06">
+                                <h4 class="megas_retangulos06 elemento_pesquisavel">150 MEGA</h4>
+                                <h5 class="enlace_retangulos06 elemento_pesquisavel">FIBRA ÓPTICA</h5>
+                            </div>
+
+                            <div class="retangulo07">
+                                <div class="retangulo07">
+                                    <div class="parte-superior"  class="elemento-container">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="palavra_solta08">R$</p>
+                                                </td>
+                                                <td>
+                                                    <h3 class="preco_plano_1">90</h3>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta09">,90</p>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta10">/mês</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="parte-inferior">
+                                        <table>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td>
+                                                    <div class="coluna_nomes">
+                                                        <p class="palavra_solta11 elemento_pesquisavel">WiFi - 5G + srv. FTP</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11 elemento_pesquisavel">150 Mbps de Donwload</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem_upload.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11 elemento_pesquisavel">100 Mbps de Upload</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="campo_botao03">
+                                            <button class="botao03">Adquirir plano</button>
+                                        </div>
+                                        <div class="campo_link04">
+                                            <a href="#mais detalhes" class="link_planos_divisao4_03 elemento_pesquisavel">
+                                                Mais detalhes
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr class="linha01_tabela02">
+                    <td class="coluna01_tabela02">
+                        <div class="caracteristicas_planos04">
+                            <div class="retangulo06">
+                                <h4 class="megas_retangulos06 elemento_pesquisavel">200 MEGA</h4>
+                                <h5 class="enlace_retangulos06 elemento_pesquisavel">FIBRA ÓPTICA</h5>
+                            </div>
+
+                            <div class="retangulo07">
+                                <div class="parte-superior"  class="elemento-container">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p class="palavra_solta08">R$</p>
+                                            </td>
+                                            <td>
+                                                <h3 class="preco_plano_1">119</h3>
+                                            </td>
+                                            <td>
+                                                <p class="palavra_solta09">,90</p>
+                                            </td>
+                                            <td>
+                                                <p class="palavra_solta10">/mês</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="parte-inferior">
+                                    <table>
+                                        <tr class="linhas_tabela03">
+                                            <td class="coluna_icones">
+                                                <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="imagem_parte_inferior_wifi">
+                                            </td>
+                                            <td>
+                                                <div class="coluna_nomes">
+                                                    <p class="palavra_solta11 elemento_pesquisavel" >100 GB NextCloud</p>
+                                                    <hr class="linha_horizontal02">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="linhas_tabela03">
+                                            <td class="coluna_icones">
+                                                <img src="../imagens/imagem_nuvem.png" alt="" class="imagem_parte_inferior_wifi">
+                                            </td>
+                                            <td class="coluna_nomes">
+                                                <div>
+                                                    <p class="palavra_solta11 elemento_pesquisavel">220 Mbps de Download</p>
+                                                    <hr class="linha_horizontal02">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="linhas_tabela03">
+                                            <td class="coluna_icones">
+                                                <img src="../imagens/imagem_nuvem_upload.png" alt="" class="imagem_parte_inferior_wifi">
+                                            </td>
+                                            <td class="coluna_nomes">
+                                                <div>
+                                                    <p class="palavra_solta11 elemento_pesquisavel">150 Mbps de Upload</p>
+                                                    <hr class="linha_horizontal02">
+                                                </div>     
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="campo_botao03">
+                                        <button class="botao03 elemento_pesquisavel">Adquirir plano</button>
+                                    </div>
+                                    <div class="campo_link04">
+                                        <a href="#mais detalhes" class="link_planos_divisao4_03 elemento_pesquisavel">
+                                            Mais detalhes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="coluna01_tabela02">
+                        <div class="caracteristicas_planos05">
+                            <div class="retangulo06">
+                                <h4 class="megas_retangulos06 elemento_pesquisavel">300 MEGA</h4>
+                                <h5 class="enlace_retangulos06 elemento_pesquisavel">FIBRA ÓPTICA</h5>
+                            </div>
+
+                            <div class="retangulo07">
+                                <div class="retangulo07">
+                                    <div class="parte-superior"  class="elemento-container">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="palavra_solta08">R$</p>
+                                                </td>
+                                                <td>
+                                                    <h3 class="preco_plano_1">134</h3>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta09">,90</p>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta10">/mês</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="parte-inferior">
+                                        <table>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td>
+                                                    <div class="coluna_nomes">
+                                                        <p class="palavra_solta11">200 GB Google Drive</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11">350 Mbps de Download</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem_upload.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11">200 Mbps de Upload</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="campo_botao03">
+                                            <button class="botao03">Adquirir plano</button>
+                                        </div>
+                                        <div class="campo_link04">
+                                            <a href="#mais detalhes" class="link_planos_divisao4_03">
+                                                Mais detalhes
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+
+                    <td class="coluna01_tabela02">
+                        <div class="caracteristicas_planos06">
+                            <div class="retangulo06">
+                                <h4 class="megas_retangulos06 elemento_pesquisavel">500 MEGA</h4>
+                                <h5 class="enlace_retangulos06 elemento_pesquisavel">FIBRA ÓPTICA</h5>
+                            </div>
+
+                            <div class="retangulo07">
+                                <div class="retangulo07">
+                                    <div class="parte-superior"  class="elemento-container">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="palavra_solta08">R$</p>
+                                                </td>
+                                                <td>
+                                                    <h3 class="preco_plano_1">189</h3>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta09">,90</p>
+                                                </td>
+                                                <td>
+                                                    <p class="palavra_solta10">/mês</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="parte-inferior">
+                                        <table>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_wifi_simbolo.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td>
+                                                    <div class="coluna_nomes">
+                                                        <p class="palavra_solta11 elemento_pesquisavel">+ Router Huawei AX2S</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11 elemento_pesquisavel">700 Mbps de Download</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="linhas_tabela03">
+                                                <td class="coluna_icones">
+                                                    <img src="../imagens/imagem_nuvem_upload.png" alt="" class="imagem_parte_inferior_wifi">
+                                                </td>
+                                                <td class="coluna_nomes">
+                                                    <div>
+                                                        <p class="palavra_solta11 elemento_pesquisavel">400 Mbps de Upload</p>
+                                                        <hr class="linha_horizontal02">
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="campo_botao03">
+                                            <button class="botao03">Adquirir plano</button>
+                                        </div>
+                                        <div class="campo_link04">
+                                            <a href="#mais detalhes" class="link_planos_divisao4_03 elemento_pesquisavel">
+                                                Mais detalhes
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+
+                <tr class="linha03_tabela02">
+                    <td class="coluna01_tabela02"></td>
+                    <td class="coluna01_tabela02">
+                        <div class="campo_link_planos_divisao4_0">
+                            <a href="" class="link_planos_divisao4_02 elemento_pesquisavel">
+                                Outros planos de internet
+                            </a>
+                        </div>
+                    </td>
+                    <td class="coluna01_tabela02"></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
+
+
+    <section class="divisao5">
+        <div class="cabecalho_sistemas_operacionais">
+            <table>
+                <tr>
+                  <div class="campo_imagens_so">
+                    <a href="
+                    "><img src="../imagens/linux_server.png" alt="" class="imagem_linux_sessao"></a>
+                        
+                  </div>  
+                  <div class="campo_imagens_so">
+                    <a href="">
+                        <img src="../imagens/windows_server.png" alt="" class="imagem_windows_sessao">
+                    </a>
+                  </div>
+                </tr>
+            </table>
+        </div>
+
+        <div class="campo_caracteristicas_servicos">
+            <table>
+                <tr>
+                    <td class="coluna01_servicos">
+                        <div class="retangulo22">
+                            <div>
+                                <div>
+                                    <p class="titulo_servidores">Servidor Proxy's</p>
+                                    <div class="campo_linha_horizontal04">
+                                        <hr class="linha_horizontal04">
+                                    </div>
+                                </div>
+                                <div class="campo_caracteristica_servicos">
+                                    <p class="caracteristicas_servicos">O Squid é um servidor de proxy de código aberto usado para caching e controle de acesso à internet, conhecido por sua eficiência e flexibilidade.</p>
+                                </div>
+                                <div class="campo_imagens_servicos01">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <img src="../imagens/squid_service.png" alt="" class="squid_service">
+                                                </div>
+                                            </td>  
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="coluna01_servicos">
+                        <div class="retangulo22_1">
+                            <div>
+                                <div>
+                                    <p class="titulo_servidores">Servidor de Email</p>
+                                    <div class="campo_linha_horizontal04">
+                                        <hr class="linha_horizontal04">
+                                    </div>
+                                </div>
+                                <div class="campo_caracteristica_servicos">
+                                    <p class="caracteristicas_servicos">O Postfix é um servidor de email de código aberto confiável e fácil de configurar, com recursos avançados de entrega de emails.</p>
+
+                                </div>
+                                <div class="campo_imagens_servicos02">
+                                    <table>
+                                        <tr>
+                                            <td><img src="../imagens/imagem_postifix.png" class="postfix_service" alt=""></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="coluna01_servicos">
+                        <div class="retangulo22_4">
+                            <div>
+                                <div>
+                                    <p class="titulo_servidores">Servidor Web</p>
+                                    <div class="campo_linha_horizontal04">
+                                        <hr class="linha_horizontal04">
+                                    </div>
+                                </div>
+                                <div class="campo_caracteristica_servicos">
+                                    <p class="caracteristicas_servicos">Servidores web rápidos e escaláveis, amplamente utilizados para hospedar sites e aplicativos online.</p>
+
+                                </div>
+                                <div class="campo_imagens_servicos05">
+                                    <table>
+                                        <tr>
+                                            <td class="campo_imagens_web02"><img src="../imagens/imagem_nginx.png" class="web_service" alt=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="campo_imagens_web"><img src="../imagens/imagem_apache2.png" class="web_service3" alt=""></td>
+                                            <td class="campo_imagens_web"><img src="../imagens/imagem_wordpress.png" class="web_service4" alt=""></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="coluna01_servicos">
+                        <div class="retangulo22_2">
+                            <div>
+                                <div>
+                                    <p class="titulo_servidores">Servidor de Arquivos</p>
+                                    <div class="campo_linha_horizontal04">
+                                        <hr class="linha_horizontal04">
+                                    </div>
+                                </div>
+                                <div class="campo_caracteristica_servicos">
+                                    <p class="caracteristicas_servicos">O FTP é um protocolo para transferir arquivos pela internet entre um cliente e um servidor, sendo usado para compartilhar e fazer upload de arquivos.</p>
+                                </div>
+                                <div class="campo_imagens_servicos03">
+                                    <table>
+                                        <tr>
+                                            <td class="campo_imagens_ftp" ><img src="../imagens/ftp_service.png" alt="" class="ftp_service"></td>
+                                            <td class="campo_imagens_ftp"><img src="../imagens/ftp_service2.png" alt="" class="ftp_service2"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="coluna01_servicos">
+                        <div class="retangulo22_3">
+                            <div>
+                                <div>
+                                    <p class="titulo_servidores">Banco de dados</p>
+                                    <div class="campo_linha_horizontal04">
+                                        <hr class="linha_horizontal04">
+                                    </div>
+                                </div>
+                                <div class="campo_caracteristica_servicos">
+                                    <p class="caracteristicas_servicos">MySQL e MariaDB são sistemas de banco de dados de código aberto amplamente usados, com a MariaDB sendo um fork do MySQL. Ambos são utilizados em uma variedade de aplicações devido à sua confiabilidade e desempenho.</p>
+                                </div>
+                                <div class="campo_imagens_servicos04">
+                                    <table>
+                                        <tr>
+                                            <td class="campo_imagens_bd"><img src="../imagens/db_service.png" alt="" class="db_service"></td>
+                                            <td><img src="../imagens/db_service2.png" alt="" class="db_service2"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="coluna01_servicos">
+                        <div class="retangulo22_5">
+                            <div>
+                                <p class="titulo_servidores">Servidor DNS</p>
+                                <div class="campo_linha_horizontal04">
+                                    <hr class="linha_horizontal04">
+                                </div>
+                            </div>
+                            <div class="campo_caracteristica_servicos">
+                                <p class="caracteristicas_servicos">O BIND é um software amplamente utilizado para servidores DNS, permitindo que computadores se conectem usando nomes de domínio em vez de números IP.</p>
+
+                            </div>
+                            <div class="campo_imagens_servicos06">
+                                <table>
+                                    <tr>
+                                        <td class="campo_imagens_bind"><img src="../imagens/bind9_service.png" class="bind_service" alt=""></td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+    </section>
+    
+
+
+
+
+
+    <section class="divisao6">
+        <div class="tabela06" id="secaoAnimada">
+                <div class="coluna01_tabela06">
+                    <div class="retangulo11">
+                        <h3 class="tema_planos elemento_pesquisavel">PLANOS <br> RESIDENCIAIS</h3>
+                        <div class="campo_imagem_demonstrativa_tabela06">
+                            <img src="../imagens/imagem_muleque_jogando.jpg" alt="" class="imagem_demonstrativa_tabela06">
+                        </div>
+                        <div class="campo_caracteristicas_tabela06">
+                            <p class="caracteristicas_tabela06 elemento_pesquisavel">Velocidades de conexão adequadas para atividades cotidianas, como navegação na web, streaming de vídeos e jogos online, oferecendo uma experiência de internet fluida e eficiente </p>
+                        </div>
+                        <div class="campo_botao06">
+                            <button class="botao06">Ver planos</button>
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="coluna01_tabela06">
+
+                    <div class="retangulo11">
+                        <h3 class="tema_planos elemento_pesquisavel">PLANOS <br> CORPORATIVOS</h3>
+                        <div class="campo_imagem_demonstrativa_tabela06">
+                            <img src="../imagens/imagem_representacao_corporativa.jpg" alt="" class="imagem_demonstrativa_tabela06">
+                        </div>
+                        <div class="campo_caracteristicas_tabela06">
+                            <p class="caracteristicas_tabela06">Voltados para empresas e organização,
+                                oferecem velocidade mais altas, maior
+                                capacidade de largura de banda e recursos
+                                adicionais; priorização de tráfego e
+                                garantias de tempo de atividade</p>
+                        </div>
+                        <div class="campo_botao06">
+                            <button class="botao06">Ver planos</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="coluna01_tabela06">
+
+                    <div class="retangulo11">
+                        <h3 class="tema_planos">PLANOS <br> DEDICADOS</h3>
+                        <div class="campo_imagem_demonstrativa_tabela06">
+                            <img src="../imagens/imagem_representacao_dedicada.jpg" alt="" class="imagem_demonstrativa_tabela06">
+                        </div>
+                        <div class="campo_caracteristicas_tabela06">
+                            <p class="caracteristicas_tabela06">Velocidades rápidas, largura de banda garantida e alta confiabilidade, ideais para empresas que têm altas demandas de conectividade, proporcionando uma infraestrutura robusta e eficiente.</p>
+                        </div>
+                        <div class="campo_botao06">
+                            <button class="botao06">Ver planos</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+    </section>
+
+
+
+
+    <section class="divisao7">
+        <div class="retangulo12">
+            <div class="lado-esquerdo">
+                <h1 class="palavra_solta12 elemento_pesquisavel">SOLICITE UM <br> ORÇAMENTO! </h1>
+                <div class="campo_link_redes_sociais">
+                    <div class="campo_imagem_redes_sociais">
+                        <a href=""><img src="../imagens/imagem_facebook.png" alt="" class="icones_redes_sociais"></a>
+                    </div>
+                    <div class="campo_imagem_redes_sociais">
+                        <a href="
+                        "><img src="../imagens/imagem_whatsapp.png" alt="" class="icones_redes_sociais"></a>
+                        
+                    </div>
+                    <div class="campo_imagem_redes_sociais">
+                        <a href=""><img src="../imagens/imagem_instagram.png" alt="" class="icones_redes_sociais"></a>
+                    </div>
+                </div>
+
+                <div class="campo_imagem_icone_email">
+                    <a href="mailto:orcamento.concordnet@gmail.com"><img src="../imagens/imagem_email.png" alt=""  class="imagem_icone_email"></a>
+                </div>
+                <a href="">
+                    <div class="campo_link_email_1">
+                        <a href="mailto:orcamento.concordnet@gmail.com" class="link_email_1">orcamento.concordnet@concord.net.br</a>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <div class="lado-direito">
+                <table class="tabela07" >
+                    <tr>
+                        <td>
+                            <div  class="input_nome_orcamento">
+                                <img src="../imagens/imagem_usuario.png" alt="Ícone">
+                                <input type="text" placeholder="nome">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div  class="input_email_orcamento">
+                                <img src="../imagens/imagem_email.png" alt="Ícone">
+                                <input type="text" placeholder="email">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div  class="input_cep_orcamento">
+                                <img src="../imagens/imagem_cep.png" alt="Ícone">
+                                <input type="text" placeholder="cep" oninput="formatarCEP(this)">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div  class="input_orcamento_orcamento">
+                                <img src="../imagens/imagem_orcamento.png" alt="Ícone">
+                                <textarea name="" id="" cols="10" rows="10"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="campo_botao09">
+                                <button class="botao09">Enviar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <section class="divisao8">
+        <div class="campo_divisao8">
+            <div class="lado-esquerdo-divisao8">
+                <div class="campo_cabeamento_estruturado">
+                    <h1 class="informativo_cabeamento_estruturado elemento_pesquisavel">CABEAMENTO <br> ESTRUTURADO</h1>
+                </div>
+            </div>
+            <div class="lado-direito-divisao8">
+                <div class="campo1_imagem_demonstrativa">
+                    <img src="../imagens/imagem_cabeamento_1.jpeg" alt="" class="imagem_representacao_cabeamento">
+                </div>
+                <div class="campo2_imagem_demonstrativa">
+                    <img src="../imagens/imagem_cabeamento_2.jpg" alt="" class="imagem_representacao_cabeamento">
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    
+
+
+    
+
+    <section class="divisao09">
+        <div class="retangulo-esquerda">
+            
+        </div>
+        <div class="retangulo-direita">
+          <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/sI8K4tiAQd0?si=xP84RNQPxM959gW-" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+    </section>
+    
+
+
+
+    <section class="divisao10">
+        <section>
+            <div class="campo_equipamentos_interconexao">
+                <table>
+                    <tr>
+                        <td class="roteadores">
+                            <div class="colunas_tabela19">
+                                <div>
+                                    <img src="../imagens/imagem_representativa_roteador.jpg" alt="" class="imagem_representacao_roteador">
+                                </div> 
+    
+                                <div class="retangulo19">
+                                   <div class="campo_nome_equipamentos_interconexao">
+                                        <h3 class="nome_equipamentos_interconexao">Roteadores</h3>
+                                   </div>
+    
+                                    <table class="tabela20">
+                                        <tr class="linhas_tabela19">
+                                            <td>
+                                                <div class="campo_promocional_caracteristico">
+                                                    <div class="retangulo20">
+                                                        <p class="equipamentos_modernos">Equipamentos modernos</p>
+                                                    </div>
+                                               </div>
+                                            </td>
+                                            <td>
+                                                <div class="campo_promocional_caracteristico">
+                                                    <div class="retangulo21">
+                                                        <p class="interconexao_promocao">10% off</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                   
+                                </div>
+                            </div>
+                        </td>
+                        <td class="switchs">
+                            <div class="colunas_tabela19">
+                                <div>
+                                    <img src="../imagens/imagem_representativa_switch.jpg" alt="" class="imagem_representacao_switch">
+                                </div>
+    
+    
+                                 <div class="retangulo19">
+                                   <div class="campo_nome_equipamentos_interconexao">
+                                        <h3 class="nome_equipamentos_interconexao">Switchs</h3>
+                                   </div>
+    
+                                    <table class="tabela20">
+                                        <tr class="linhas_tabela19">
+                                            <td>
+                                                <div class="campo_promocional_caracteristico">
+                                                    <div class="retangulo20">
+                                                        <p class="equipamentos_modernos">Equipamentos modernos</p>
+                                                    </div>
+                                               </div>
+                                            </td>
+                                            <td>
+                                                <div class="campo_promocional_caracteristico">
+                                                    <div class="retangulo21">
+                                                        <p class="interconexao_promocao">5% off</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                   
+                                </div>
+                            </div>
+                        </td>
+                        <td class="servidores">
+                            <div class="colunas_tabela19">
+                                <div>
+                                    <img src="../imagens/imagem_representativa_servidor.jpg" alt="" class="imagem_representacao_servidor">
+                                </div>   
+    
+                                <div class="retangulo19">
+                                    <div class="campo_nome_equipamentos_interconexao">
+                                         <h3 class="nome_equipamentos_interconexao">Servidores</h3>
+                                    </div>
+     
+                                     <table class="tabela20">
+                                         <tr class="linhas_tabela19">
+                                             <td>
+                                                 <div class="campo_promocional_caracteristico">
+                                                     <div class="retangulo20">
+                                                         <p class="equipamentos_modernos">Equipamentos modernos</p>
+                                                     </div>
+                                                </div>
+                                             </td>
+                                             <td>
+                                                 <div class="campo_promocional_caracteristico">
+                                                     <div class="retangulo21">
+                                                         <p class="interconexao_promocao">20% off</p>
+                                                 </div>
+                                             </td>
+                                         </tr>
+                                     </table>
+                                    
+                                 </div>          
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+
+
+            <table class="tabela_equipamentos_compras">
+                <tr>
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                            <div class="campo_imagem_equipamento">
+                            <img src="../imagens/imagem_huawei-wifi-ax3-pro.png" alt="" class="imagens_equipamentos">
+                            </div>
+                            <div class="campo_caracteristicas_equipamentos">
+                                <ul>
+                                    <li class="listas_caracteristicas elemento_pesquisavel"><strong>HUAWEI AX3 Pro</strong></li>
+                                    <li class="listas_caracteristicas">WiFi 6 Plus 2.0 Gbps</li>
+                                    <li class="listas_caracteristicas">160 Mhz, alta performace</li>
+                                </ul>
+                            </div>
+                            <div class="campo_link_detalhes_equipamento">
+                                <a href="" class="link_detalhes_equipamento">
+                                → Mais detalhes
+                                </a>
+                            </div>
+                        </div></a>
+                        
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href=""><div class="retangulo15">
+                            <div class="campo_imagem_equipamento">
+                                <img src="../imagens/imagem_roteador2.png" alt="" class="imagens_equipamentos">
+                            </div>
+                            <div class="campo_caracteristicas_equipamentos">
+                                <ul>
+                                    <li class="listas_caracteristicas elemento_pesquisavel"><strong>INTELBRAS N 300</strong></li>
+                                    <li class="listas_caracteristicas">2.4 GHz 300 Mbps</li>
+                                    <li class="listas_caracteristicas">70m² de cobertura</li>
+                                </ul>
+                            </div>
+                            <div class="campo_link_detalhes_equipamento">
+                                <a href="" class="link_detalhes_equipamento">
+                                → Mais detalhes
+                                </a>
+                            </div>
+                        </div></a>
+                        
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <div class="retangulo15">
+                            <a href="">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/switch_8_portas_intelbras-removebg-preview.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas"><strong>INTELBRAS Switch 8
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">Fast Ethernet 10/100 Mbps</li>
+                                        <li class="listas_caracteristicas">Suporte VLAN</li>
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                    → Mais detalhes
+                                    </a>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <div class="retangulo15">
+                            <a href="">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/imagens_c50_tplink.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROTEADOR TP-LINK C50
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">4 antenas / 4 LANs</li>
+                                        <li class="listas_caracteristicas">2.4 GHz / 5 GHz</li>
+                                        <li class="listas_caracteristicas">1167 Mbps</li>
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                    → Mais detalhes
+                                    </a>
+                                </div>
+                            </a>
+                           
+                        </div>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <div class="retangulo15">
+                            <a href="">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/imagem_servidor_nas.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>SERVIDOR NAS Synology
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">12 BAIAS HDD / SSD</li>
+                                        <li class="listas_caracteristicas">Intel Xeon D-1531</li>
+                                        <li class="listas_caracteristicas">16GB DDR4 - 2 x1GbE</li>
+                    
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                    → Mais detalhes
+                                    </a>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </td>
+                    
+                    <td class="coluna_campo_retangulo15">
+                        <div class="retangulo15">
+                            <a href=""><div class="campo_imagem_equipamento">
+                                <img src="../imagens/imagens_equipamentos/imagem_c80_tplink.png" alt="" class="imagens_equipamentos">
+                            </div>
+                            <div class="campo_caracteristicas_equipamentos">
+                                <ul>
+                                    <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROTEADOR TP-LINK C80
+                                    </strong></li>
+                                    <li class="listas_caracteristicas">802.11ac/n/a/b/g 5/2.4 GHz</li>
+                                    <li class="listas_caracteristicas">1300 Mbps em 5 GHz</li>
+                                    <li class="listas_caracteristicas">4 LAN, 1 WAN Gigabit</li>
+                                 
+                                </ul>
+                            </div>
+                            <div class="campo_link_detalhes_equipamento">
+                                <a href="" class="link_detalhes_equipamento">
+                                → Mais detalhes
+                                </a>
+                            </div></a>
+                            
+                        </div>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <div class="retangulo15">
+                            <a href="">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/roteador_300n_tplin.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROTEADOR W300 N
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">802.11n, 2.4 GHz</li>
+                                        <li class="listas_caracteristicas">300 Mbps, 2 antenas</li>
+                                        <li class="listas_caracteristicas">4 LAN, 1 WAN Fast</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/imagem_c20_tplink.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROUTER TP-LINK C20
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">802.11n/a/b/ac, 2.4 / 5 GHz</li>
+                                        <li class="listas_caracteristicas">5GHz/2GHz, 733Mbps</li>
+                                        <li class="listas_caracteristicas">4 LAN, 1 WAN Fast</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </td>
+                    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/imagem_rf1200_intelbras.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROUTER INTELB. RF1200
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">802.11n/a/b/g/n/ac</li>
+                                        <li class="listas_caracteristicas">2.4 e 5 GHz / 1167 Mbps</li>
+                                        <li class="listas_caracteristicas">4 LAN, 1 WAN Gigabit</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/roteador_huawei_ax2.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROUTER HUAWEI AX2
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">802.11n/ax/a/ac</li>
+                                        <li class="listas_caracteristicas">2.4 GHz e 5 GHz /1500Mbps</li>
+                                        <li class="listas_caracteristicas">WiFi 6, WiFi AX2NEW</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/multilaser_re163.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROUTER MULT. RE163
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">802.11ac</li>
+                                        <li class="listas_caracteristicas">Fast Ethernet, 300Mbps</li>
+                                        <li class="listas_caracteristicas">3 LAN's 10/100Mbps</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/placa_rede_dge528.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>PLACA D-LINK DGR528T
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">802.3</li>
+                                        <li class="listas_caracteristicas">Interface PCI</li>
+                                        <li class="listas_caracteristicas">Gigabit 10/100/1000Mbps</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/roteador_dlink_dir615.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROUTER D-LINK DIR615
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">300Mbps, 100m²</li>
+                                        <li class="listas_caracteristicas">Suporte IPv6</li>
+                                        <li class="listas_caracteristicas">Modo repetidor</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/dgs-1016d_f2_image_lfront-removebg-preview.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>SWITCH DSG-1016C
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">16 portas Gigabit</li>
+                                        <li class="listas_caracteristicas">Plug and Play</li>
+                                        <li class="listas_caracteristicas">802.3/u/ab/az</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+    
+                    <td class="coluna_campo_retangulo15">
+                        <a href="">
+                            <div class="retangulo15">
+                                <div class="campo_imagem_equipamento">
+                                    <img src="../imagens/imagens_equipamentos/roteador_tplink_wr849.png" alt="" class="imagens_equipamentos">
+                                </div>
+                                <div class="campo_caracteristicas_equipamentos">
+                                    <ul>
+                                        <li class="listas_caracteristicas elemento_pesquisavel"><strong>ROUTER TL-WR829N
+                                        </strong></li>
+                                        <li class="listas_caracteristicas">2.4GHz / 300Mbps</li>
+                                        <li class="listas_caracteristicas">IEEE 802.11b</li>
+                                        <li class="listas_caracteristicas">1 WAN, 2 LAN 10/100</li>
+                                     
+                                    </ul>
+                                </div>
+                                <div class="campo_link_detalhes_equipamento">
+                                    <a href="" class="link_detalhes_equipamento">
+                                        → Mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        
+    </section>
+
+
+
+
+
+    
+    <section class="divisao11"> 
+        <div class="campo_links_funcionalidades_finais01"> 
+                    
+            <div class="retangulo16">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="campo_imagem_links_funcionalidades">
+                                <img src="../imagens/imagem_duvida.png" alt="" class="imagem_links_funcionalidades">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campo_palavra_solta14">
+                                <a href="">
+                                    <p class="palavra_solta14 elemento_pesquisavel">Dúvidas frequentes</p>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>        
+                            
+            <div class="retangulo16">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="campo_imagem_links_funcionalidades">
+                                <img src="../imagens/imagem_download2.png" alt="" class="imagem_links_funcionalidades">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campo_palavra_solta14">
+                                <a href="#inserir_serviço_ftp">
+                                    <p class="palavra_solta14 elemento_pesquisavel">Arquivos para download</p>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                                
+            <div class="retangulo16">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="campo_imagem_links_funcionalidades">
+                                <img src="../imagens/imagem_denuncia.png" alt="" class="imagem_links_funcionalidades">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campo_palavra_solta14">
+                                <a href="">
+                                    <p class="palavra_solta14 elemento_pesquisavel">Realizar denúncia</p>
+                                </a>
+                                
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>  
+        
+        <hr class="linha_horizontal03">
+
+        <div>
+            <div class="retangulo17">
+                <table>
+                    <tr>
+                        <td class="colunas_tabela10">
+                            <div>
+                               <a href="">
+                                    <h1 class="campo_ajuda elemento_pesquisavel">Você precisa de ajuda?</h1>
+                               </a>
+                            </div>
+                        </td>
+                        <td class="colunas_tabela10">
+                            <a href=""><img class="imagem_ferramentas" src="../imagens/imagem ferramentas.png" alt=""></a>
+                        </td>
+                        <td class="colunas_tabela10"> 
+                            <a href="" class="palavra_solta15"><h3>Assistência técnica</h3></a>
+                            <a href="" class="palavra_solta15_1"><h3>Sem internet</h3></a>
+                        </td>
+
+                        <td class="colunas_tabela10">
+                            <a href=""><img class="imagem_ferramentas" src="../imagens/imagem_telefone.png" alt=""></a>
+                        </td>
+                        <td class="colunas_tabela10"> 
+                            <a href="" class="palavra_solta15 elemento_pesquisavel"><h3>Entre em contato<br> com o suporte</h3></a>
+                        </td>
+
+                        <td class="colunas_tabela10">
+                            <a href=""><img class="imagem_ferramentas" src="../imagens/imagens_postes.png" alt=""></a>
+                        </td>
+                        <td class="colunas_tabela10"> 
+                            <a href=""class="palavra_solta15 elemento_pesquisavel"><h3>Relatar acidente</h3></a>
+                        </td>
+
+                        <td class="colunas_tabela10">
+                            <a href=""><img class="imagem_ferramentas" src="../imagens/imagem_pagamento.png" alt=""></a>
+                        </td>
+                        <td class="colunas_tabela10"> 
+                            <a href=""class="palavra_solta15 elemento_pesquisavel"><h3>Realizar pagamento</h3></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="campo_navegacao_final">
+            <table>
+                <tr>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="retangulo18">
+                            <div class="campo_icone_representacao_final05">
+                                <img class="icone_representacao_final05" src="../imagens/imagem_menu.png" alt="">
+                            </div>
+                            <a href=""><h3 class="palavra_solta16">MENU</h3></a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="retangulo18">
+                            <div class="campo_icone_representacao_final">
+                                <img class="icone_representacao_final" src="../imagens/imagem_plano.png" alt="">
+                            </div>
+                            <a href=""><h3 class="palavra_solta16">PLANOS</h3></a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="retangulo18">
+                            <div class="campo_icone_representacao_final">
+                                <img class="icone_representacao_final" src="../imagens/imagem_servidor.png" alt="">
+                            </div>            
+                            <a href=""><h3 class="palavra_solta16">SERVIÇOS</h3></a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="retangulo18">
+                            <div class="campo_icone_representacao_final">
+                                <img class="icone_representacao_final" src="../imagens/imagem_atendimento.png" alt="">
+                            </div>
+                            <a href=""><h3 class="palavra_solta16">CONTATO</h3></a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="retangulo18">
+                            <div class="campo_icone_representacao_final">
+                                <img class="icone_representacao_final" src="../imagens/imagem_predio.png" alt="">
+                            </div>
+                            <a href=""><h3 class="palavra_solta16">INSTITUIÇÃO</h3></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="linha01_links">
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao01">
+                            <a href="" class="links_finais01">INÍCIO</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao02">
+                            <a href="" class="links_finais">PARA SUA RESIDÊNCIA</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao03">
+                            <a href="" class="links_finais">SRV. ARQUIVOS</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao04">
+                            <a href="" class="links_finais">DÚVIDAS FREQUENTES</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao05">
+                            <a href="" class="links_finais">CONCORDNET</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="linha02_links">
+                    <td class="coluna_topicos_localizacoes"><div></div></td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao06">
+                            <a href="" class="links_finais">PARA SUA INSTITUIÇÃO</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao07">
+                            <a href="" class="links_finais">SRV. WEB</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao08">
+                            <a href="" class="links_finais">CONTATOS</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao09">
+                            <a href="" class="links_finais">DESENVOLVEDOR</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="linha03_links">
+                    <td class="coluna_topicos_localizacoes"></td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao10">
+                            <a href="" class="links_finais">ESPECIAIS</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes">
+                        <div class="campo_link_localizacao11">
+                            <a href="" class="links_finais">SRV. EMAIL</a>
+                        </div>
+                    </td>
+                    <td class="coluna_topicos_localizacoes"></td>
+                    <td class="coluna_topicos_localizacoes"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="campo_redes_sociais">
+            <table>
+                <tr>
+                    <td>
+                        <div class="campo_redes_sociais_finais">
+                            <a href=""><img src="../imagens/imagem_whatsapp.png" alt="" class="icone_whatsapp"></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <div class="campo_redes_sociais_finais"> 
+                            <a href=""><img src="../imagens/imagem_facebook.png" alt="" class="icone_facebook"></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="campo_redes_sociais_finais">
+                            <a href=""><img src="../imagens/imagem_instagram.png" alt="" class="icone_instagram"></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="campo_direitos_autorais">
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                             <p  class="direitos_autorais elemento_pesquisavel">Todos os direitos reservados © 2024 <strong>ConcordNet</strong></p>
+                        </td>
+                        <td>
+                            <img src="../imagens/sub_logo_concordnet1.png" alt="" class="logo_final">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
